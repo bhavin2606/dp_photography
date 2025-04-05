@@ -1,0 +1,18 @@
+# Ignore node_modules in both client and server
+client/node_modules/
+server/node_modules/
+
+# Ignore environment variables
+client/.env
+server/.env
+
+# Ignore build artifacts (optional)
+client/dist/
+server/dist/
+
+# Ignore TS build output
+server/build/
+server/*.tsbuildinfo
+
+# Ignore Vite build output
+client/dist/
