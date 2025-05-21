@@ -5,6 +5,7 @@ import galleryRoutes from './routes/gallery.routes';
 import packageRoutes from "./routes/package.routes";
 import bookingRoutes from "./routes/booking.routes";
 import emailRoutes from "./routes/email.routes";
+import siteImagesRouter from "./routes/siteImages.route";
 import path from 'path';
 
 dotenv.config();
@@ -19,4 +20,5 @@ app.use('/api/gallery', galleryRoutes);
 app.use("/api/packages", packageRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use("/api/email", emailRoutes);
+app.use("/api/site-images", siteImagesRouter);
 export default app;

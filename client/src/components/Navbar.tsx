@@ -36,7 +36,7 @@ const Navbar = () => {
     >
       <div className="container-custom mx-auto flex justify-between items-center py-4">
         <Link to="/" className="font-serif text-2xl font-medium transition-colors">
-          <img src='/logo/DP_B&G.png' className='md:h-40 md:w-40 h-14 w-14'></img>
+          <img src='/logo/DP_B&G.png' className='md:h-32 md:w-32 h-14 w-14'></img>
         </Link>
         
         {/* Desktop Menu */}

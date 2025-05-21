@@ -1,7 +1,7 @@
 
 import { Navigate } from "react-router-dom";
 import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";
-import { Boxes, ImageIcon, PackageIcon, Calendar, MessageSquare, UserCircle } from "lucide-react";
+import { Boxes, ImageIcon, PackageIcon, Calendar, MessageSquare, UserCircle, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface AdminLayoutProps {
@@ -40,6 +40,11 @@ const AdminLayout = ({ children, isLoggedIn }: AdminLayoutProps) => {
       title: "Bookings",
       href: "/admin/bookings",
       icon: Calendar,
+    },
+    {
+      title: "Settings",
+      href: "/admin/settings",
+      icon: Settings,
     },
     {
       title: "Testimonials",

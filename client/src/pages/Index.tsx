@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPackages } from '@/services/packageService';
 import { fetchGalleryImages } from '@/services/galleryService';
-
+import { fetchSiteImages } from "@/services/siteImageService";
 const Index = () => {
   const { data: allPackages = [], isLoading } = useQuery({
     queryKey: ["packages"],
@@ -24,6 +24,18 @@ const Index = () => {
   const [popularPackages, setPopularPackages] = useState<Package[]>([]);
   const [featuredTestimonials, setFeaturedTestimonials] = useState<Testimonial[]>([]);
 
+  const [siteImages, setSiteImages] = useState<{
+    mainThumbnail: string;
+    aboutSectionImages: string[];
+  } | null>(null);
+
+  useEffect(() => {
+    fetchSiteImages()
+      .then(setSiteImages)
+      .catch((err) => {
+        console.error("Failed to load site images", err);
+      });
+  }, []);
   // useEffect(() => {
   //   // Get popular packages or first 3
   //   const popular = packages.filter(pkg => pkg.popular) || packages.slice(0, 3);
@@ -56,7 +68,7 @@ const Index = () => {
       <Hero
         title="DP Photography"
         subtitle="Capturing your precious moments with passion and creativity"
-        image="/image/TWK07096.JPG"
+        image={siteImages?.mainThumbnail || "/fallback/main.jpg"}
         ctaText="Book Now"
         ctaLink="/booking"
         height="full"
@@ -70,13 +82,7 @@ const Index = () => {
               <h2 className="text-3xl md:text-4xl font-serif mb-6">Capturing Your Story</h2>
               <p className="text-gray-700 mb-6">
                 At DP Photography, we believe that every moment tells a story worth preserving.
-                With our keen eye for detail and passion for photography, we capture the emotions,
-                the laughter, and the tears that make your special moments truly memorable.
-              </p>
-              <p className="text-gray-700 mb-8">
-                Whether it's your wedding day, an engagement session, a family portrait, or any
-                special event, we are committed to creating timeless images that you'll cherish
-                for generations to come.
+                ...
               </p>
               <Link to="/gallery">
                 <Button variant="outline" className="group">
@@ -85,27 +91,23 @@ const Index = () => {
                 </Button>
               </Link>
             </div>
+
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img
-                  src="/image/about/about2.JPG"
+                  src={siteImages?.aboutSectionImages?.[1] || "/image/about/about2.JPG"}
                   alt="Wedding Photography"
                   className="rounded-lg object-cover w-full h-4/5"
                 />
-                {/* <img 
-                  src="https://images.unsplash.com/photo-1566473965997-3de9c817e938" 
-                  alt="Family Photography" 
-                  className="rounded-lg object-cover w-full h-32"
-                /> */}
               </div>
               <div className="space-y-4 pt-6">
                 <img
-                  src="/image/about/about1.JPG"
+                  src={siteImages?.aboutSectionImages?.[0] || "/image/about/about1.JPG"}
                   alt="Portrait Photography"
                   className="rounded-lg object-cover w-full h-32"
                 />
                 <img
-                  src="/image/about/about3.JPG"
+                  src={siteImages?.aboutSectionImages?.[2] || "/image/about/about3.JPG"}
                   alt="Engagement Photography"
                   className="rounded-lg object-cover w-full h-48"
                 />
@@ -114,6 +116,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+
 
       {/* Services Section */}
       <section className="py-20 bg-gray-50">

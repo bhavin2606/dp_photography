@@ -44,7 +44,7 @@ const EditImageDialog = ({
 }: EditImageDialogProps) => {
   return (
     <Dialog open={!!editingImage} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-xl">
+      <DialogContent className="max-w-xl max-h-[740px] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Edit Image</DialogTitle>
           <DialogDescription>

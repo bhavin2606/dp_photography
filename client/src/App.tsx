@@ -20,6 +20,7 @@ import AdminGallery from "./pages/admin/Gallery";
 import AdminPackages from "./pages/admin/Packages";
 import AdminBookings from "./pages/admin/Bookings";
 import AdminTestimonials from "./pages/admin/Testimonials";
+import SettingsPage from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,11 @@ const App = () => {
             <Route path="/admin/testimonials" element={
               <AdminLayout isLoggedIn={isLoggedIn}>
                 <AdminTestimonials />
+              </AdminLayout>
+            } />
+            <Route path="/admin/settings" element={
+              <AdminLayout isLoggedIn={isLoggedIn}>
+                <SettingsPage />
               </AdminLayout>
             } />
             <Route path="*" element={<NotFound />} />
